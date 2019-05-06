@@ -1,0 +1,2 @@
+<app-author-list-item *ngFor="let i of authors" [author]="i" (onEdit)="edit($event)" (onSelect)="select($event)"
+                      (onDelete)="delete($event)"></app-author-list-item>

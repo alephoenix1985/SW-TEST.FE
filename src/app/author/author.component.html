@@ -1,0 +1,19 @@
+<ul class="buttons-bar">
+    <li>
+        <span class="label">Authors</span>
+    </li>
+    <li></li>
+    <li>
+        <button mat-raised-button (click)="openAuthor()">
+            Create an Author
+            <mat-icon>person_add</mat-icon>
+        </button>
+    </li>
+</ul>
+<app-author-list class="author-list" [authors]="authors"
+                 (onEdit)="openAuthor($event)"
+                 (onSelect)="authorSelected($event)"
+                 (onDelete)="deleteAuthor($event)"></app-author-list>
+<div *ngIf="!(authors&&authors.length)" class="full-width">
+    <div class="label-low">Please create an Author.</div>
+</div>

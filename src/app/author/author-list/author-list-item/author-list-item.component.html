@@ -1,0 +1,28 @@
+<mat-card class="author-list-item" [class.selected]="author.selected">
+    <mat-card-header (click)="select(author)">
+        <div mat-card-avatar class="card-header-image overflow-hidden">
+            <i class="large-icon avatar-icon material-icons">person</i>
+        </div>
+        <mat-card-title>{{author.name | truncate:13}}</mat-card-title>
+        <mat-card-subtitle style="margin-bottom: 0">
+            <ul class="author-info">
+                <li>
+                    <mat-icon>email</mat-icon>
+                    <span>{{author.email}}</span>
+                </li>
+                <li>
+                    <mat-icon>cake</mat-icon>
+                    <span>{{author.birthDate | date:'shortDate'}}</span>
+                </li>
+            </ul>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <div class="buttons-box">
+        <button mat-button matPrefix mat-icon-button aria-label="Clear" class="material-icons" (click)="edit(author)">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-button matPrefix mat-icon-button aria-label="Clear" class="material-icons" (click)="delete(author)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-card>

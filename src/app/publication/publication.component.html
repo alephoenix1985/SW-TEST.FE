@@ -1,0 +1,56 @@
+<mat-card>
+    <mat-form-field class="full-width">
+        <mat-icon class="material-icons" matPrefix>
+            search
+        </mat-icon>
+        <input type="text" matInput placeholder="Search publications" [(ngModel)]="value"
+               (ngModelChange)="search($event)">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value='';search(value)">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</mat-card>
+<mat-card>
+    <ul class="buttons-bar">
+        <li class="create-button">
+            <button mat-raised-button (click)="openPublication()">Create a Publication</button>
+        </li>
+        <li class="buttons-bar--paginator">
+            <button mat-button class="arrows" [disabled]="!(optionList.page!==0)" matSuffix mat-icon-button
+                    aria-label="Clear"
+                    (click)="optionList.page = optionList.page - 1">
+                <mat-icon>arrow_leftward</mat-icon>
+            </button>
+            <button *ngFor="let p of pubs && pubs.pages;let i = index" mat-button [class.active]="i===optionList.page"
+                    [color]="i===optionList.page?'accent':'primary'" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="optionList.page=i">
+                {{i + 1}}
+            </button>
+            <button mat-button class="arrows"
+                    [disabled]="!(pubs && pubs.pages && (pubs.pages.length > 1 && optionList.page + 1  < pubs.pages.length))"
+                    matSuffix
+                    mat-icon-button aria-label="Clear"
+                    (click)="optionList.page = optionList.page + 1">
+                <mat-icon>arrow_rightward</mat-icon>
+            </button>
+        </li>
+        <li class="right-bar">
+            <span>{{currentPageItems().length}} / {{pubs && pubs.count}}</span>
+            <button *ngIf="optionList.order" mat-button matSuffix mat-icon-button aria-label="Clear"
+                    (click)="listOrder(0)">
+                <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button *ngIf="!optionList.order" mat-button matSuffix mat-icon-button aria-label="Clear"
+                    (click)="listOrder(1)">
+                <mat-icon>arrow_downward</mat-icon>
+            </button>
+        </li>
+    </ul>
+    <app-publication-list [items]="currentPageItems()"
+                          (onEdit)="openPublication($event)"
+                          (onDelete)="deletePublication($event)"></app-publication-list>
+    <div *ngIf="!(currentPageItems() && currentPageItems().length)" class="full-width">
+        <div class="label">There are no publications yet..</div>
+    </div>
+</mat-card>
+

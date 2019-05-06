@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Publication</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="item.title" placeholder="Title" required>
+        <mat-error *ngIf="!(item.title && item.title.length)">
+            Title is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput
+                  [(ngModel)]="item.body"
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="2"
+                  placeholder="Body"
+                  cdkAutosizeMaxRows="5" required></textarea>
+        <mat-error *ngIf="!(item.body && item.body.length)">
+            Body is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Author</mat-label>
+        <mat-select [(ngModel)]="item.author" [disabled]="!(authors && authors.length)" #authorSelector required>
+            <mat-option *ngFor="let a of authors" [value]="a">
+                {{a.name}}
+            </mat-option>
+        </mat-select>
+        <button mat-button matSuffix mat-icon-button (click)="addAuthor(authorSelector)">
+            <mat-icon>person_add</mat-icon>
+        </button>
+        <mat-error *ngIf="!item.author">
+            An author is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="datetime-local" [value]="now" (change)="onDateChanged($event)" placeholder="Published At" required>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="onSave(item)" [disabled]="!isValid()" cdkFocusInitial>
+        Save
+    </button>
+</div>

@@ -1,0 +1,21 @@
+<mat-card class="publication-item">
+    <mat-card-header>
+        <div mat-card-avatar class="card-header-image overflow-hidden">
+            <i class="large-icon avatar-icon material-icons">subject</i>
+        </div>
+        <mat-card-title>{{author.title}}</mat-card-title>
+        <mat-card-subtitle>By: {{author.author.name}}<br>
+            <span class="published-at">Published: {{author.publishedAt | date:'short'}}</span></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{author.body}}</p>
+    </mat-card-content>
+    <div class="buttons-box">
+        <button mat-button matPrefix mat-icon-button aria-label="Clear" class="material-icons" (click)="edit(author)">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-button matPrefix mat-icon-button aria-label="Clear" class="material-icons" (click)="delete(author)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-card>

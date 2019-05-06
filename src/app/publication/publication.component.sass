@@ -1,0 +1,32 @@
+.buttons-bar
+  display: flex
+  width: 100%
+  list-style: none
+  padding: 0
+
+  &--paginator
+    width: 100%
+    display: flex
+    justify-content: center
+
+    .active
+      background: lightblue
+
+.right-bar
+  width: 150px
+  display: flex
+  justify-content: flex-end
+  line-height: 40px
+
+@media (max-width: 600px)
+  .buttons-bar
+    flex-wrap: wrap
+
+    .create-button
+      width: 100%
+      padding-bottom: 10px
+
+      button
+        width: 100%
+  .buttons-bar--paginator
+    width: calc(100% - 150px)
