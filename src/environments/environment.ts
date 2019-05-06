@@ -6,7 +6,7 @@ export const environment = {
     production: false,
     server: {
         backEnd: {
-            base: 'http://localhost:3000/'
+            base: 'https://8dnjb67he3.execute-api.us-east-1.amazonaws.com/dev/'
         }
     }
 };
