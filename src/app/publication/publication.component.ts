@@ -16,6 +16,7 @@ import { Publication } from '../../core/models/publication.model';
 export class PublicationComponent implements OnInit {
   pubs: any = {};
   optionList: { limit?: number; page?: number; order?: number, filters?: any };
+  value: any;
 
   constructor(public dialog: MatDialog,
               private snackBar: MatSnackBar,

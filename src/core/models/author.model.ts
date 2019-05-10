@@ -9,6 +9,7 @@ export class Author {
     createdAt: string;
     updatedAt: string;
     deletedAt: null;
+    selected: boolean;
 
     constructor(data: any = {}) {
         const date = new Date().toISOString();
